@@ -1,0 +1,196 @@
+html,
+body {
+  background-color: #e6ecf0;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.header {
+  background-color: #32a5a5;
+  height: 40px;
+  width: 100%;
+}
+
+.part {
+  float: left;
+  width: 50%;
+  height: 100%;
+  min-width: 70px;
+}
+
+.searchbox {
+  float: left;
+  width: 50%;
+  height: 100%;
+  min-width: 70px;
+}
+
+.search {
+  display: block;
+  resize: none;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 7px;
+  width: 150px;
+  min-width: 50px;
+  border-radius: 13px;
+  font-size: 15px;
+}
+
+.navigation {
+  float: left;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  background-color: rgb(59, 59, 59);
+  color: rgb(218, 218, 218);
+  width: 5%;
+  min-width: 80px;
+  height: 100vh;
+}
+
+.selected_menu {
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-align: center;
+  background-color: rgb(82, 82, 82);
+  color: rgb(255, 255, 255);
+  height: 70px;
+}
+
+.menu {
+  -webkit-user-select: none;
+  overflow-x: hidden;
+  text-align: center;
+  cursor: pointer;
+  height: 70px;
+}
+
+.menu:hover {
+  background-color: rgb(82, 82, 82);
+  color: rgb(255, 255, 255);
+}
+
+.column1 {
+  float: left;
+  width: 23%;
+  height: 100%;
+  min-width: 130px;
+}
+
+.column2 {
+  float: left;
+  width: 23%;
+  height: 100%;
+  min-width: 130px;
+}
+
+.column3 {
+  float: left;
+  width: 23%;
+  height: 100%;
+  min-width: 130px;
+}
+
+.column4 {
+  float: left;
+  width: 23%;
+  height: 100%;
+  min-width: 130px;
+}
+
+.textarea {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  resize: none;
+  width: 60%;
+  min-width: 100px;
+  min-height: 50px;
+  border-radius: 5px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.send {
+  background-color: #32a5a5;
+  color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-user-select: none;
+  position: relative;
+  text-align: center;
+  margin: auto;
+  line-height: 1.8em;
+  border-radius: 5px;
+  width: 20%;
+  border: 0px;
+  min-width: 50px;
+}
+
+.groupbox {
+  background-color: #fff;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-x: hidden;
+  margin: 0px auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  width: 75%;
+  min-width: 100px;
+  height: 50px;
+  border-radius: 7px;
+}
+
+.group {
+  font-size: 20px;
+}
+
+.description {
+  color: gray;
+}
+
+.studentbox {
+  background-color: #fff;
+  margin: 0px auto;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  width: 75%;
+  height: 70px;
+  border-radius: 7px;
+}
+
+.holder {
+  float: left;
+  width: 80%;
+  height: 100%;
+}
+
+.checkbox {
+  float: left;
+  width: 20%;
+  height: 100%;
+}
+
+.check {
+  margin-top: 16px;
+  transform: scale(1.5);
+}
+
+.student_name {
+  font-size: 20px;
+}
+
+.group_num {
+  color: gray;
+}
