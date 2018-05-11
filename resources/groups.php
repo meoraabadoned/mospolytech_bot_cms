@@ -3,31 +3,70 @@ session_start();
 if(!isset($_SESSION['Name'])) header("Location: auth.php"); 
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<body>
-    <div class="header">
-        <div class="part"> </div>
-        <div class="searchbox">
-            <textarea name="search" rows="1" wrap="off" placeholder="поиск" class="search" onkeypress='search()'></textarea>
-        </div>
-    </div>
-    <div class="navigation">
-        <div class="selected_menu" id="menu_groups" onclick="location.href='groups.php';">группы</div>
-        <div class="menu" id="menu_students" onclick="location.href='students.php';">студенты</div>
-        <div class="menu" id="menu_search" onclick="location.href='search.php';">поиск</div>
-        <div class="menu" id="menu_control" onclick="location.href='control.php';">панель управления</div>
-    </div>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Список групп, с которыми работает бот.">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
 
-    <div class="column1"> 
-    <?php
+    <title>Список групп</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="album.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Московский Политех</a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item ">
+        <a class="nav-link active" href="groups.php">Группы</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="students.php">Студенты<span class="sr-only">(current)</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="control.php">Панель Управления</a>
+      </li>
+      <li class="nav-item">
+        <form method="post">
+          <input type="search" class="form-control mr-sm-2" name="exit">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+      </button>
+        </form>
+      </li>
+    </ul>
+    <form action="search.php" method="get" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" aria-label="Search" name = "word">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск
+      </button>
+    </form>
+  </div>
+</nav>
+    </header>
+  <body>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3">
+      <?php
     $sort=0;
     try
     {
@@ -59,9 +98,8 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
     }?>
 
     </div>
-
-    <div class="column2"> 
-    <?php
+    <div class="col-sm-3">
+       <?php
     $sort=0;
     try
     {
@@ -92,9 +130,8 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
         die();
     }?>
     </div>
-
-    <div class="column3"> 
-    <?php
+    <div class="col-sm-3">
+      <?php
     $sort=0;
     try
     {
@@ -125,14 +162,21 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
         die();
     }?>
     </div>
-
-    <div class="column4">  
+    <div class="col-md-3">
         <textarea class="textarea" name="text" cols="30" rows="10" placeholder="текст уведомления"></textarea>
-        <input type="submit" class="send" value="send">
+        <input type="submit" class="send" value="Отправить">
+        <!--
         <form method="post">
-            <input type="submit" class="send" name="exit" value="выход">
+            <input type="submit" class="send" name="exit" value="Выход">
         </form>
+      -->
     </div>
+  </div>
+</div>
+
+
+
+    
     <!-- немного js  -->
     <script>
         function search() 
