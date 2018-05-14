@@ -32,37 +32,22 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
     try
     {
         $dbh = new PDO("mysql:host=std-mysql;dbname=std_320;", 'std_320','meowmeow'); 
-        $result = $dbh->query("SELECT * FROM students")->fetchAll();
-        $reverseResult = array_reverse($result);
-        foreach($reverseResult as $post):
         if(isset($_GET['group']))
         {
-            if($_GET['group']==$post["group_num"])
-            {
-                $sort++;
-                if($sort==1)
-                {
-                    echo '<div class="studentbox">';    
-                    echo '<div class="holder">';
-                    echo '<div class="student_name"><a href="https://vk.com/id'.$post["vk_id"].'">'.$post["surname"].' '.$post["name"].' '.$post["patronymic"].'</a></div>';
-                    echo '<div class="description">'.$post["group_num"].'</div>';
-                    echo '</div>';
-                    echo '<div class="checkbox">';
-                    echo '<input type="checkbox" class="check" name="targetStudents[]" value="'.$post["vk_id"].'">';
-                    echo '</div>';
-                    echo '</div>';
-                }
-                if($sort==3)
-                    $sort=0;
-            }
-        }else
+            $result = $dbh->query("SELECT * FROM students WHERE group_num LIKE '%".$_GET['group']."%'")->fetchAll();
+        }
+        else
         {
+            $result = $dbh->query("SELECT * FROM students")->fetchAll();
+        }
+        $reverseResult = array_reverse($result);
+        foreach($reverseResult as $post):
             $sort++;
             if($sort==1)
             {
                 echo '<div class="studentbox">';    
                 echo '<div class="holder">';
-                echo '<div class="student_name"><a href="https://vk.com/id'.$post["vk_id"].'">'.$post["surname"].' '.$post["name"].' '.$post["patronymic"].'</a></div>';
+                echo '<div class="student_name"><a href="https://vk.com/id'.$post["vk_id"].'">'.$post["surname"].' '.$post["name"].'</a></div>';
                 echo '<div class="description">'.$post["group_num"].'</div>';
                 echo '</div>';
                 echo '<div class="checkbox">';
@@ -72,7 +57,6 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
             }
             if($sort==3)
                 $sort=0;
-        }
         endforeach; 
         $dbh = null;
         $result=null;
@@ -89,37 +73,22 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
     try
     {
         $dbh = new PDO("mysql:host=std-mysql;dbname=std_320;", 'std_320','meowmeow'); 
-        $result = $dbh->query("SELECT * FROM students")->fetchAll();
-        $reverseResult = array_reverse($result);
-        foreach($reverseResult as $post):
         if(isset($_GET['group']))
         {
-            if($_GET['group']==$post["group_num"])
-            {
-                $sort++;
-                if($sort==2)
-                {
-                    echo '<div class="studentbox">';    
-                    echo '<div class="holder">';
-                    echo '<div class="student_name"><a href="https://vk.com/id'.$post["vk_id"].'">'.$post["surname"].' '.$post["name"].' '.$post["patronymic"].'</a></div>';
-                    echo '<div class="description">'.$post["group_num"].'</div>';
-                    echo '</div>';
-                    echo '<div class="checkbox">';
-                    echo '<input type="checkbox" class="check" name="targetStudents[]" value="'.$post["vk_id"].'">';
-                    echo '</div>';
-                    echo '</div>';
-                }
-                if($sort==3)
-                    $sort=0;
-            }
-        }else
+            $result = $dbh->query("SELECT * FROM students WHERE group_num LIKE '%".$_GET['group']."%'")->fetchAll();
+        }
+        else
         {
+            $result = $dbh->query("SELECT * FROM students")->fetchAll();
+        }
+        $reverseResult = array_reverse($result);
+        foreach($reverseResult as $post):
             $sort++;
             if($sort==2)
             {
                 echo '<div class="studentbox">';    
                 echo '<div class="holder">';
-                echo '<div class="student_name"><a href="https://vk.com/id'.$post["vk_id"].'">'.$post["surname"].' '.$post["name"].' '.$post["patronymic"].'</a></div>';
+                echo '<div class="student_name"><a href="https://vk.com/id'.$post["vk_id"].'">'.$post["surname"].' '.$post["name"].'</a></div>';
                 echo '<div class="description">'.$post["group_num"].'</div>';
                 echo '</div>';
                 echo '<div class="checkbox">';
@@ -129,7 +98,6 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
             }
             if($sort==3)
                 $sort=0;
-        }
         endforeach; 
         $dbh = null;
         $result=null;
@@ -145,37 +113,22 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
     try
     {
         $dbh = new PDO("mysql:host=std-mysql;dbname=std_320;", 'std_320','meowmeow'); 
-        $result = $dbh->query("SELECT * FROM students")->fetchAll();
-        $reverseResult = array_reverse($result);
-        foreach($reverseResult as $post):
         if(isset($_GET['group']))
         {
-            if($_GET['group']==$post["group_num"])
-            {
-                $sort++;
-                if($sort==3)
-                {
-                    echo '<div class="studentbox">';    
-                    echo '<div class="holder">';
-                    echo '<div class="student_name"><a href="https://vk.com/id'.$post["vk_id"].'">'.$post["surname"].' '.$post["name"].' '.$post["patronymic"].'</a></div>';
-                    echo '<div class="description">'.$post["group_num"].'</div>';
-                    echo '</div>';
-                    echo '<div class="checkbox">';
-                    echo '<input type="checkbox" class="check" name="targetStudents[]" value="'.$post["vk_id"].'">';
-                    echo '</div>';
-                    echo '</div>';
-                }
-                if($sort==3)
-                    $sort=0;
-            }
-        }else
+            $result = $dbh->query("SELECT * FROM students WHERE group_num LIKE '%".$_GET['group']."%'")->fetchAll();
+        }
+        else
         {
+            $result = $dbh->query("SELECT * FROM students")->fetchAll();
+        }
+        $reverseResult = array_reverse($result);
+        foreach($reverseResult as $post):
             $sort++;
             if($sort==3)
             {
                 echo '<div class="studentbox">';    
                 echo '<div class="holder">';
-                echo '<div class="student_name"><a href="https://vk.com/id'.$post["vk_id"].'">'.$post["surname"].' '.$post["name"].' '.$post["patronymic"].'</a></div>';
+                echo '<div class="student_name"><a href="https://vk.com/id'.$post["vk_id"].'">'.$post["surname"].' '.$post["name"].'</a></div>';
                 echo '<div class="description">'.$post["group_num"].'</div>';
                 echo '</div>';
                 echo '<div class="checkbox">';
@@ -185,7 +138,6 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
             }
             if($sort==3)
                 $sort=0;
-        }
         endforeach; 
         $dbh = null;
         $result=null;
@@ -215,28 +167,39 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
 </html>
 
 <?php
-    if(isset($_POST['send']))
+    if(isset($_POST['send'])) //при нажатии на кнопку отправки
     {
         $author = "admin";
-        $text = $_POST['text'];
-        $targets = $_POST['targetStudents'];
-        $preparedTargets = implode(",",$targets);
+        $text = $_POST['text']; //берутся данные с textarea
+        $targets = $_POST['targetStudents']; //выбирается массив данных с всех checkbox'ов
+        $preparedTargets = implode(",",$targets);//преобразование в массив
         $isSent = 0;
+        $type = "";
 
-        if(empty($text))
+        if($preparedTargets=="") //определения типа рассылки
+        {
+            $type = "all";
+        }
+        else
+        {
+            $type = "students";
+        }
+
+
+        if(empty($text)) //проверка на пустой textaera
         {
             echo "<script>location.replace('')</script>";
         }
         else
         {
-            if(stristr($content, '!important') === FALSE)
+            if(stristr($content, '!important') === FALSE) //защита от html тегов и взлома стилей
             {
             $dbHost = "std-mysql";
             $dbUser = "std_320";
             $dbPass = "meowmeow";
             $dbName = "std_320";
 
-
+                //начало добавления в бд
             if (mysqli_connect_errno()) {
                 exit();
             }
@@ -245,17 +208,18 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
 
             $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
         
-            $query = "INSERT INTO `notifications` (`author`, `text`, `target`, `is_sent`) 
-                VALUES ('$author', '$text', '$preparedTargets', '$isSent');";
+            $query = "INSERT INTO `notifications` (`author`, `text`,`target_type`,`target`, `is_sent`) 
+                VALUES ('$author', '$text', '$type' ,'$preparedTargets', '$isSent');";
 
             if ($result = $mysqli->query($query)) 
             {
             }
 
             $text= "";
-
+            $type = "";
+            $preparedTargets ="";
             $mysqli->close();
-            echo "<script>location.replace('')</script>";
+            echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php?place=students')</script>";//включение рассылки
         }
         else
         {

@@ -155,6 +155,17 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
         $targets = $_POST['targetGroups'];
         $preparedTargets = implode(",",$targets);
         $isSent = 0;
+        $type = "";
+
+        if($preparedTargets=="")
+        {
+            $type = "all";
+        }
+        else
+        {
+            $type = "groups";
+        }
+
 
         if(empty($text))
         {
@@ -178,17 +189,18 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
 
             $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
         
-            $query = "INSERT INTO `notifications` (`author`, `text`, `target`, `is_sent`) 
-                VALUES ('$author', '$text', '$preparedTargets', '$isSent');";
+            $query = "INSERT INTO `notifications` (`author`, `text`,`target_type`, `target`, `is_sent`) 
+                VALUES ('$author', '$text', '$type' ,'$preparedTargets', '$isSent');";
             
             if ($result = $mysqli->query($query)) 
             {
             }
 
-            $text= "";
-
+            $text = "";
+            $type = "";
+            $preparedTargets ="";
             $mysqli->close();
-            echo "<script>location.replace('')</script>";
+            echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php?place=groups')</script>";
         }
         else
         {
