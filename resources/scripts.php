@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-    //echo "<script>location.replace('index.php')</script>";
-    ?>
-</body>
-</html>
+<?php
+//echo "<script>location.replace('index.php')</script>";
+?>
 
 <?php
 
@@ -34,6 +23,8 @@ function student($columnNum)
             $sort++;
             if($sort==$columnNum)
             {
+                echo '<div class="searchable-container">';
+                echo '<div class="items">';
                 echo '<div class="studentbox">';    
                 echo '<div class="holder">';
                 echo '<div class="student_name"><a href="https://vk.com/id'.$post["vk_id"].'">'.$post["surname"].' '.$post["name"].'</a></div>';
@@ -41,6 +32,8 @@ function student($columnNum)
                 echo '</div>';
                 echo '<div class="checkbox">';
                 echo '<input type="checkbox" class="check" name="targetStudents[]" value="'.$post["vk_id"].'">';
+                echo '</div>';
+                echo '</div>';
                 echo '</div>';
                 echo '</div>';
             }
@@ -67,6 +60,8 @@ function group($columnNum)
         $sort++;
         if($sort==$columnNum)
         {
+            echo '<div class="searchable-container">';
+            echo '<div class="items">';
             echo '<div class="groupbox">';
             echo '<div class="holder">';
             echo '<div class="group"><a href="students.php?group='.$post["group_num"].'">'.$post["group_num"].'</a></div>';
@@ -74,6 +69,8 @@ function group($columnNum)
             echo '</div>';
             echo '<div class="checkbox">';
             echo '<input type="checkbox" class="check" name="targetGroups[]" value="'.$post["group_num"].'">';
+            echo '</div>';
+            echo '</div>';            
             echo '</div>';
             echo '</div>';
         }
@@ -169,7 +166,7 @@ function sendOutForGroups()
         $dbHost = "std-mysql";
         $dbUser = "std_320";
         $dbPass = "meowmeow";
-        $dbName = "std_320";
+        $dbName = "std_320";    
         if (mysqli_connect_errno()) {
             exit();
         }
