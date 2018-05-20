@@ -1,5 +1,6 @@
 html,
-body, .container-fluid {
+body,
+.container-fluid {
   background-color: #e6ecf0;
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -25,7 +26,7 @@ a {
 }
 
 .searchbox {
-  float:  left;
+  float: left;
   width: 50%;
   height: 100%;
   min-width: 70px;
@@ -79,40 +80,12 @@ a {
   color: rgb(255, 255, 255);
 }
 
-.column1 {
-  float: left;
-  width: 23%;
-  height: 100%;
-  min-width: 130px;
-}
-
-.column2 {
-  float: left;
-  width: 23%;
-  height: 100%;
-  min-width: 130px;
-}
-
-.column3 {
-  float: left;
-  width: 23%;
-  height: 100%;
-  min-width: 130px;
-}
-
-.column4 {
-  float: left;
-  width: 23%;
-  height: 100%;
-  min-width: 130px;
-}
-
 .textarea {
   display: block;
   margin-left: auto;
   margin-right: auto;
   resize: none;
-  
+
   min-width: 100px;
   min-height: 50px;
   border-radius: 5px;
@@ -121,8 +94,8 @@ a {
   margin-bottom: 10px;
 }
 
-.send{
-  background-color:#343A40 ;
+.send {
+  background-color: #343a40;
   color: white;
   display: block;
   margin-left: auto;
@@ -139,7 +112,7 @@ a {
 }
 input.ex {
   margin-left: 0;
-  margin-top:3px;
+  margin-top: 4px;
 }
 
 .groupbox {
@@ -147,14 +120,17 @@ input.ex {
   text-align: center;
   word-wrap: break-word;
   overflow-x: hidden;
-  margin: 0px auto;
   margin-bottom: 10px;
   margin-top: 10px;
   padding: 5px;
-  width: 75%;
-  min-width: 100px;
+  min-height: 70px;
   border-radius: 7px;
 }
+/*
+margin: 0px auto;
+width: 75%;
+font-size: 10vw;
+*/
 
 .group {
   font-size: 20px;
@@ -166,13 +142,11 @@ input.ex {
 
 .studentbox {
   background-color: #fff;
-  margin: 0px auto;
   text-align: center;
   margin-bottom: 10px;
   margin-top: 10px;
   padding: 5px;
-  width: 75%;
-  height: 70px;
+  min-height: 70px;
   border-radius: 7px;
 }
 
@@ -189,8 +163,9 @@ input.ex {
 }
 
 .check {
-  margin-top: 16px;
+  margin-top: 50%;
   transform: scale(1.5);
+  vertical-align: middle;
 }
 .student_name {
   line-height: 1em;

@@ -1,6 +1,7 @@
 <?php 
 session_start(); 
 if(!isset($_SESSION['Name'])) header("Location: auth.php"); 
+require 'scripts.php'
 ?>
 
 <!doctype html>
@@ -43,10 +44,10 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
         <a class="nav-link" href="students.php">Студенты<span class="sr-only">(current)</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="control.php">Панель Управления</a>
+        <a class="nav-link" href="question.php">Вопросы</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="question.php">Вопросы</a>
+        <a class="nav-link" href="control.php">Панель Управления</a>
       </li>
       <li class="nav-item">
         <form method="post">
@@ -64,190 +65,33 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
     </header>
   <body>
 
+<form method="post">
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm">
-     <?php
-    $sort=0;
-    try
-    {
-        $dbh = new PDO("mysql:host=std-mysql;dbname=std_320;", 'std_320','meowmeow'); 
-        $result = $dbh->query("SELECT * FROM groups")->fetchAll();
-        $reverseResult = array_reverse($result);
-        foreach($reverseResult as $post):
-        $sort++;
-        if($sort==1)
-        {
-            echo '<div class="groupbox">';
-            echo '<div class="holder">';
-            echo '<div class="group"><a href="students.php?group='.$post["group_num"].'">'.$post["group_num"].'</a></div>';
-            echo '<div class="description">'.$post["description"].'</div>';
-            echo '</div>';
-            echo '<div class="checkbox">';
-            echo '<input type="checkbox" class="check" name="targetGroups[]" value="'.$post["group_num"].'">';
-            echo '</div>';
-            echo '</div>';
-        }
-        if($sort==3)
-            $sort=0;
-        endforeach; 
-        $dbh = null;
-        $result=null;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        die();
-    }?>
-    </div>
-    
-    <div class="col-sm">
-    <?php
-    $sort=0;
-    try
-    {
-        $dbh = new PDO("mysql:host=std-mysql;dbname=std_320;", 'std_320','meowmeow'); 
-        $result = $dbh->query("SELECT * FROM groups")->fetchAll();
-        $reverseResult = array_reverse($result);
-        foreach($reverseResult as $post):
-        $sort++;
-        if($sort==2)
-        {
-            echo '<div class="groupbox">';
-            echo '<div class="holder">';
-            echo '<div class="group"><a href="students.php?group='.$post["group_num"].'">'.$post["group_num"].'</a></div>';
-            echo '<div class="description">'.$post["description"].'</div>';
-            echo '</div>';
-            echo '<div class="checkbox">';
-            echo '<input type="checkbox" class="check" name="targetGroups[]" value="'.$post["group_num"].'">';
-            echo '</div>';
-            echo '</div>';
-        }
-        if($sort==3)
-            $sort=0;
-        endforeach; 
-        $dbh = null;
-        $result=null;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        die();
-    }?>
-    </div>
-    <div class="col-sm">
-      <?php
-    $sort=0;
-    try
-    {
-        $dbh = new PDO("mysql:host=std-mysql;dbname=std_320;", 'std_320','meowmeow'); 
-        $result = $dbh->query("SELECT * FROM groups")->fetchAll();
-        $reverseResult = array_reverse($result);
-        foreach($reverseResult as $post):
-        $sort++;
-        if($sort==3)
-        {
-            echo '<div class="groupbox">';
-            echo '<div class="holder">';
-            echo '<div class="group"><a href="students.php?group='.$post["group_num"].'">'.$post["group_num"].'</a></div>';
-            echo '<div class="description">'.$post["description"].'</div>';
-            echo '</div>';
-            echo '<div class="checkbox">';
-            echo '<input type="checkbox" class="check" name="targetGroups[]" value="'.$post["group_num"].'">';
-            echo '</div>';
-            echo '</div>';
-        }
-        if($sort==3)
-            $sort=0;
-        endforeach; 
-        $dbh = null;
-        $result=null;
-    } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        die();
-    }?>
-    </div>
-    <div class="col-md">
+    <div class="col-md" id="textColumn">
         <textarea class="textarea" name="text" cols="30" rows="10" placeholder="текст уведомления"></textarea>
         <input type="submit" class="send" value="Отправить">
     </div>
+    <div class="col-sm">
+     <?php group(1)?>
+    </div>
+    <div class="col-sm">
+    <?php group(2)?>
+    </div>
+    <div class="col-sm">
+    <?php group(3)?>
+    </div>
   </div>
 </div>
-
-
-
-    
-    <!-- немного js  -->
-    <script>
-        function search() 
-        {
-            if(event.keyCode == 13)
-            {
-                location.replace('search.php');
-            }
-        }
-    </script>
-    <!--  -->
+</form>
 </body>
 </html>
 <?php 
     if(isset($_POST['send']))
     {
-        $author = "admin";
-        $text = $_POST['text'];
-        $targets = $_POST['targetGroups'];
-        $preparedTargets = implode(",",$targets);
-        $isSent = 0;
-        $type = "";
-        if($preparedTargets=="")
-        {
-            $type = "all";
-        }
-        else
-        {
-            $type = "groups";
-        }
-        if(empty($text))
-        {
-            echo "<script>location.replace('')</script>";
-        }
-        else
-        {
-            if(stristr($content, '!important') === FALSE)
-            {
-            $dbHost = "std-mysql";
-            $dbUser = "std_320";
-            $dbPass = "meowmeow";
-            $dbName = "std_320";
-            if (mysqli_connect_errno()) {
-                exit();
-            }
-        
-            echo '<br>';
-            $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
-        
-            $query = "INSERT INTO `notifications` (`author`, `text`,`target_type`, `target`, `is_sent`) 
-                VALUES ('$author', '$text', '$type' ,'$preparedTargets', '$isSent');";
-            
-            if ($result = $mysqli->query($query)) 
-            {
-            }
-            $text = "";
-            $type = "";
-            $preparedTargets ="";
-            $mysqli->close();
-            echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php?place=groups')</script>";
-        }
-        else
-        {
-            echo "<script>location.replace('')</script>";
-        }
-        }
+        sendOutForGroups();
+        echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php?place=groups')</script>";//включение рассылки
     }
-    if(isset($_POST['exit'])) 
-    { 
-        session_destroy(); 
-        header('Location: /auth.php'); 
-        exit; 
-    } 
-?>
-<?php 
     if(isset($_POST['exit'])) 
     { 
         session_destroy(); 

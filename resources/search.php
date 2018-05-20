@@ -10,7 +10,7 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=de<li class="nav-item">
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
@@ -32,7 +32,7 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item ">
+      <li class="nav-item "> 
         <a class="nav-link" href="groups.php">Группы <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
@@ -41,7 +41,20 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
       <li class="nav-item">
         <a class="nav-link" href="control.php">Панель Управления</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="question.php">Вопросы</a>
+      </li>
+      <li class="nav-item">
+        <form method="post">
+          <input type="submit" class="send ex nav-link" name="exit" value="Выход">
+        </form>
+      </li>
     </ul>
+     <form action="search.php" method="get" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" aria-label="Search" name = "word">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск
+      </button>
+    </form>
   </div>
 </nav>
     </header>
@@ -51,7 +64,7 @@ if(!isset($_SESSION['Name'])) header("Location: auth.php");
     <div class="col-sm-4">
 <?php 
 $dbh = new PDO("mysql:host=std-mysql;dbname=std_320;", 'std_320','meowmeow'); 
-$result = $dbh->query("SELECT * FROM students WHERE surname  LIKE '%".$_GET['word']."%'")->fetchAll(); 
+$result = $dbh->query("SELECT * FROM students WHERE surname  LIKE '%".$_GET['word']."%'") ->fetchAll(); 
 $reverseResult = array_reverse($result); 
 foreach($reverseResult as $post): 
 { 
