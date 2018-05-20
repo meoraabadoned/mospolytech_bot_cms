@@ -25,9 +25,9 @@ require 'scripts.php'
 
     <!-- Custom styles for this template -->
      <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="que.css">
   </head>
 
-  <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@ require 'scripts.php'
   </button>
   <a class="navbar-brand" href="#">Московский Политех</a>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+  <section class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item ">
         <a class="nav-link" href="groups.php">Группы</span></a>
@@ -44,7 +44,7 @@ require 'scripts.php'
         <a class="nav-link" href="students.php">Студенты</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="question.php">Вопросы<span class="sr-only">(current)</a>
+        <a class="nav-link active" href="question.php">Вопросы<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="control.php">Панель Управления</a>
@@ -60,6 +60,19 @@ require 'scripts.php'
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск
       </button>
     </form>
-  </div>
+  </section>
 </nav>
     </header>
+    <body>
+        <div class="container">
+                <div class="badger-right badger-info" data-badger1 = "ФИО" data-badger="Дата и время">ТИПА ТЕКСТ ВОПРОСА#1
+                    <textarea id="txtInput" class="textarea2" name="text" placeholder="текст уведомления">                   </textarea>
+                  <input type="submit" class="send2" value="Отправить">
+              </div>
+              <div class="badger-right badger-info" data-badger1 = "ФИО" data-badger="Дата и время">ТИПА ТЕКСТ ВОПРОСА#2
+                    <textarea id="txtInput" class="textarea2" name="text" placeholder="текст уведомления">                   </textarea>
+                  <input type="submit" class="send2" value="Отправить">
+              </div>
+      </div>
+    </body>
+    </html>

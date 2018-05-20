@@ -1,0 +1,101 @@
+div {
+    margin: 15px 0;
+    padding: 33px 15px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, .64)
+}
+[class*="badger"] {
+    position: relative
+}
+
+[class*="badger"]:after {
+    content: attr(data-badger);
+    position: absolute;
+    top: 0;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #999;
+    color: #fff
+}
+div.ans{
+    margin:-12px;
+    margin-top:10px;    
+}
+input.send2{
+    background-color: #343a40;
+    color: white;
+    display: block;
+    line-height: 1.5em;
+    border-radius: 5px;
+    padding: 5px;
+    border: 0px;
+    position: absolute;
+    right:15px;
+    bottom:5px;
+    -webkit-user-select: none;
+}
+textarea.textarea2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+    width:100%;
+    min-width: 100px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+ 
+}
+
+.badger-left {
+    border-top-left-radius: 6px
+}
+
+.badger-right {
+    border-top-right-radius: 6px
+}
+
+.badger-left:after {
+    left: 0;
+    border-radius: 6px 0 6px 0
+}
+
+.badger-right:after {
+    right: 0;
+    border-radius: 0 6px 0 6px
+}
+
+.badger-danger:after {
+    background: #d9534f
+}
+
+.badger-warning:after {
+    background: #f0ad4e
+}
+
+.badger-success:after {
+    background: #5cb85c
+}
+
+.badger-info:after {
+    background: #5bc0de
+}
+
+.badger-inverse:after {
+    background: #222
+}
+[class*="badger"]:before {
+    content: attr(data-badger1);
+    position: absolute;
+    top: 0;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #999;
+    color: #fff
+}
+.badger-right:before {
+    left: 0;
+    border-radius: 6px 0 6px 0
+}
