@@ -52,7 +52,7 @@ require 'scripts.php'
                 </li>
             </ul>
             <form action="search.php" method="get" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" name = "word">
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" name = "word" id="search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск
             </button>
             </form>
@@ -83,7 +83,23 @@ require 'scripts.php'
     <?php student(3)?>
     </div>
 </form>
-
+<!-- тут начинается немного магии -->
+<script>
+$(function() {
+  $("#search").on("keyup", function() {
+    var pattern = $(this).val();
+    $(".searchable-container .items").hide();
+    $(".searchable-container .items")
+      .filter(function() {
+        return $(this)
+          .text()
+          .match(new RegExp(pattern, "i"));
+      })
+      .show();
+  });
+});
+</script>
+<!-- а вот тут заканчивается -->
 </body>
 </html>
 <?php
