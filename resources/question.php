@@ -55,22 +55,20 @@ require 'scripts.php'
         </form>
       </li>
     </ul>
-    <form action="search.php" method="get" class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" aria-label="Search" name = "word">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск
-      </button>
-    </form>
+    <form action="scripts.js" method="get" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" name = "word" id="search">
+            </form>
   </section>
 </nav>
     </header>
     <body>
-        <div class="container">
+        <div class="col-sm-4 block">
                 <div class="badger-right badger-info" data-badger1 = "ФИО" data-badger="Дата и время">ТИПА ТЕКСТ ВОПРОСА#1
-                    <textarea id="txtInput" class="textarea2" name="text" placeholder="текст уведомления">                   </textarea>
+                    <textarea class="textarea2" name="text" placeholder="текст уведомления"></textarea>
                   <input type="submit" class="send2" value="Отправить">
               </div>
               <div class="badger-right badger-info" data-badger1 = "ФИО" data-badger="Дата и время">ТИПА ТЕКСТ ВОПРОСА#2
-                    <textarea id="txtInput" class="textarea2" name="text" placeholder="текст уведомления">                   </textarea>
+                    <textarea class="textarea2" name="text" placeholder="текст уведомления"></textarea>
                   <input type="submit" class="send2" value="Отправить">
               </div>
       </div>
