@@ -32,30 +32,8 @@ if(isset($_SESSION['Name'])) header("Location: index.php");
       <label for="password" class="sr-only">Пароль:</label>
       <input type="password" name="password" id="password" class="form-control" placeholder="Пароль" required>
       <button class="btn btn-dark btn-block" name="cool" type="submit">Войти</button>
-      
-      <?php
-if (isset($_POST['cool']))
-{
-  // получаем данные из формы с авторизацией
-  $login= $_POST['login'];
-  $password= $_POST['password'];
-  //проверка пароля и логина
-  if (($login=='admin')&& ($password=='123'))
-  {
-    echo ("логин совпадает и пароль верны");
-    //Запуск сессий;
-    session_start();
-    $_SESSION['Name']=$login;
-    // идем на страницу для авторизованного пользователя
-    header("Location: index.php");
-  }
-  else
-  {echo ('Такой логин с паролем не найдены в базе данных.');}
-}
-?>
 <p class="mt-5 mb-4 text-muted">&copy;
       Московский Политех </p>
-
     </form>
 </body>
 </html>
