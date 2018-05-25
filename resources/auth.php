@@ -27,7 +27,7 @@ if(isset($_SESSION['Name'])) header("Location: index.php");
     <form method="post" class="form-signin">
       <img class="mb-4" src="polytech.png" alt="polytech logo" width="320" height="140">
       <h1 class="h3 mb-3 font-weight-normal">Авторизируйтесь для работы</h1>
-      <label for="login" class="sr-only">>Логин: </label> 
+      <label for="login" class="sr-only">Логин: </label> 
       <input type="text" name="login" id="login" placeholder="Логин" class="form-control">
       <label for="password" class="sr-only">Пароль:</label>
       <input type="password" name="password" id="password" class="form-control" placeholder="Пароль" required>
@@ -59,3 +59,41 @@ if (isset($_POST['cool']))
     </form>
 </body>
 </html>
+
+<?php
+$mysqli = new mysqli('std-mysql','std_331','123456789', 'std_331');
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+	if (mysqli_connect_errno()) 
+	{
+		printf("Connect failed: %s\n", mysqli_connect_error());
+		exit();
+	}
+	if (isset($_POST['cool']))
+	{
+		$sol = 'HOHOHOLOLOLOBOBOBO';
+		$l_Nickname= $_POST['login'];
+		$l_Password= sha1($_POST['password']);
+		$l_Password = $l_Password.$sol;
+		$query = "SELECT Password FROM Auth WHERE Login = '$l_Nickname'";
+		if ($result = $mysqli->query($query)) 
+		{
+			while ($row = $result->fetch_assoc()) {
+			$Password_L= $row["Password"];
+		}
+		$result->close();
+	}
+		if ($l_Password == ($Password_L))
+		{
+			session_start();
+			$_SESSION['Name']=$login;
+			header("Location: /index.php");
+		}
+		else
+		{
+			echo '<br>Неправильный пароль<br>';
+		}
+		$mysqli->close();
+	}
+?>
