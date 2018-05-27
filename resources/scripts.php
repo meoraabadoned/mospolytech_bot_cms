@@ -192,5 +192,28 @@ function sendOutForGroups()
     }
     }
 }
-
+function question ()
+{
+	try
+    {
+		$date = date("Y-m-d H:i:s"); 
+        $dbh = new PDO("mysql:host=std-mysql;dbname=std_320;", 'std_320','meowmeow'); 
+        $result = $dbh->query("SELECT * FROM questions WHERE is_answered = '0'")->fetchAll();
+        $reverseResult = array_reverse($result);
+        foreach($reverseResult as $post):
+        {
+            echo '<div class="badger-right badger-info" data-badger1 = '.$post["vk_id"].' data-badger=" '.$post["date"].' "> '.$post["question"].' ';
+            echo '<textarea class="textarea2" name="text" placeholder="текст уведомления"></textarea>';
+            echo '<input type="submit" name="send" class="send2" value="Отправить"></div>';
+        }
+		endforeach; 
+		$dbh = null;
+		$result=null;
+	} 
+	catch (PDOException $e) 
+	{
+        print "Error!: " . $e->getMessage() . "<br/>";
+        die();
+	}
+}
 ?>
