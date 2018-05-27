@@ -63,14 +63,7 @@ require 'scripts.php'
     </header>
     <body>
         <div class="col-sm-4 block">
-                <div class="badger-right badger-info" data-badger1 = "ФИО" data-badger="Дата и время">ТИПА ТЕКСТ ВОПРОСА#1
-                    <textarea class="textarea2" name="text" placeholder="текст уведомления"></textarea>
-                  <input type="submit" class="send2" value="Отправить">
-              </div>
-              <div class="badger-right badger-info" data-badger1 = "ФИО" data-badger="Дата и время">ТИПА ТЕКСТ ВОПРОСА#2
-                    <textarea class="textarea2" name="text" placeholder="текст уведомления"></textarea>
-                  <input type="submit" class="send2" value="Отправить">
-              </div>
+               <?php  question() ?>
       </div>
     </body>
     </html>
