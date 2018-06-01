@@ -68,10 +68,10 @@ require 'scripts.php'
   <div class="row">
     <div class="col-md" id="textColumn">
         <textarea class="textarea" name="text" cols="30" rows="10" placeholder="текст уведомления"></textarea>
-        <input type="submit" class="send" value="Отправить">
+        <input type="submit" name="send" class="send" value="Отправить">  
     </div>
     <div class="col-sm">
-     <?php group(1)?>
+    <?php group(1);?>
     </div>
     <div class="col-sm">
     <?php group(2)?>
@@ -79,8 +79,6 @@ require 'scripts.php'
     <div class="col-sm">
     <?php group(3)?>
     </div>
-  </div>
-</div>
 </form>
 <!-- тут начинается немного магии -->
 <script>
