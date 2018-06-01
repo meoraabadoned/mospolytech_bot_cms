@@ -62,8 +62,13 @@ require 'scripts.php'
 </nav>
     </header>
     <body>
-        <div class="col-sm-4 block">
-               <?php  question() ?>
-      </div>
+      <?php  question() ?>
     </body>
     </html>
+
+<?php 
+if(isset($_POST['send']))
+{
+  answer();
+}
+?>
