@@ -55,22 +55,24 @@ require 'scripts.php'
         </form>
       </li>
     </ul>
-    <form action="scripts.js" method="get" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" name = "word" id="search">
-            </form>
+    
   </section>
 </nav>
     </header>
     <body>
-        <div class="col-sm-4 block">
-                <div class="badger-right badger-info" data-badger1 = "ФИО" data-badger="Дата и время">ТИПА ТЕКСТ ВОПРОСА#1
-                    <textarea class="textarea2" name="text" placeholder="текст уведомления"></textarea>
-                  <input type="submit" class="send2" value="Отправить">
-              </div>
-              <div class="badger-right badger-info" data-badger1 = "ФИО" data-badger="Дата и время">ТИПА ТЕКСТ ВОПРОСА#2
-                    <textarea class="textarea2" name="text" placeholder="текст уведомления"></textarea>
-                  <input type="submit" class="send2" value="Отправить">
-              </div>
-      </div>
+      <?php  question() ?>
     </body>
     </html>
+
+<?php 
+if(isset($_POST['send']))
+{
+  answer();
+}
+if(isset($_POST['exit'])) 
+    { 
+        session_destroy(); 
+        header('Location: /auth.php'); 
+        exit; 
+    } 
+?>

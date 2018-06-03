@@ -65,7 +65,7 @@ ini_set('display_startup_errors', 1);
 		if ($l_Password == ($Password_L))
 		{
 			session_start();
-			$_SESSION['Name']=$login;
+			$_SESSION['Name']=$l_Nickname;
 			header("Location: /index.php");
 		}
 		else

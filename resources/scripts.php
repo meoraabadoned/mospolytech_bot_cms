@@ -130,7 +130,7 @@ function sendOutForStudents()
             $type = "";
             $preparedTargets ="";
             $mysqli->close();
-            echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php?place=.'$place'.')</script>";//включение рассылки
+            echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php')</script>";//ссылка на скрипт вашего бота
         }
         else
         {
@@ -184,7 +184,7 @@ function sendOutForGroups()
         $type = "";
         $preparedTargets ="";
         $mysqli->close();
-        echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php?place=groups')</script>";
+        echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php')</script>";//ссылка на скрипт вашего бота
     }
     else
     {
@@ -193,4 +193,55 @@ function sendOutForGroups()
     }
 }
 
+function question ()
+{
+    try
+    {
+        $dbh = new PDO("mysql:host=std-mysql;dbname=std_320;", 'std_320','meowmeow'); 
+        $result = $dbh->query("SELECT * FROM questions WHERE is_answered = '0'")->fetchAll();
+        $reverseResult = array_reverse($result);
+        foreach($reverseResult as $post):
+        {
+            echo '<div class="badger-right badger-info" data-badger1 = '.$post["vk_id"].' data-badger="'.$post["date"].'"> '.$post["question"].' ';
+            echo '<form method="post"';
+            echo '<div>';    
+            echo '<textarea class="textarea2" name="text_answer" placeholder="текст уведомления"></textarea>';
+            echo '<input type="hidden" name="post_id" value="'.$post["id"].'" />';
+            echo '<input type="submit" name="send" class="send2" value="Отправить">';
+            echo '</div>';          
+            echo '</form>';
+            echo '</div>';      
+        }
+		endforeach; 
+		$dbh = null;
+		$result=null;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        die();
+    }
+}
+
+function answer()
+{     
+    $dbHost = "std-mysql";
+    $dbUser = "std_320";
+    $dbPass = "meowmeow";
+    $dbName = "std_320";
+  
+    $id = $_POST["post_id"];
+    $text_answer = $_POST["text_answer"];
+    if (mysqli_connect_errno()) {
+        exit();
+    }
+  
+    echo '<br>';
+    $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+  
+    $query = "UPDATE questions SET answer = '$text_answer', is_answered = 1 WHERE id = '$id';";
+    if ($result = $mysqli->query($query)) 
+    {
+    }
+    $mysqli->close();
+    echo "<script>location.replace('http://vkbot.std-320.ist.mospolytech.ru/answers.php')</script>"; //ссылка на скрипт вашего бота
+}
 ?>
