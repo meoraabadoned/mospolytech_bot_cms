@@ -55,9 +55,7 @@ require 'scripts.php'
         </form>
       </li>
     </ul>
-    <form action="scripts.js" method="get" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" name = "word" id="search">
-            </form>
+    
   </section>
 </nav>
     </header>
@@ -71,4 +69,10 @@ if(isset($_POST['send']))
 {
   answer();
 }
+if(isset($_POST['exit'])) 
+    { 
+        session_destroy(); 
+        header('Location: /auth.php'); 
+        exit; 
+    } 
 ?>

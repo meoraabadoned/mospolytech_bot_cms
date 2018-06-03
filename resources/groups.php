@@ -100,15 +100,16 @@ $(function() {
 </body>
 </html>
 <?php 
-    if(isset($_POST['send']))
-    {
-        sendOutForGroups();
-        echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php?place=groups')</script>";//включение рассылки
-    }
-    if(isset($_POST['exit'])) 
+if(isset($_POST['exit'])) 
     { 
         session_destroy(); 
         header('Location: /auth.php'); 
         exit; 
     } 
+    if(isset($_POST['send']))
+    {
+        sendOutForGroups();
+        echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php?place=groups')</script>";//включение рассылки
+    }
+    
 ?>
