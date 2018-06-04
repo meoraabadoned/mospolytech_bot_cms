@@ -130,7 +130,7 @@ function sendOutForStudents()
             $type = "";
             $preparedTargets ="";
             $mysqli->close();
-            echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php')</script>";//ссылка на скрипт вашего бота
+            echo "<script>location.replace('http://bot.std-573.ist.mospolytech.ru/notification.php')</script>";//ссылка на скрипт вашего бота
         }
         else
         {
@@ -184,7 +184,7 @@ function sendOutForGroups()
         $type = "";
         $preparedTargets ="";
         $mysqli->close();
-        echo "<script>location.replace('http://sss.std-322.ist.mospolytech.ru/notification.php')</script>";//ссылка на скрипт вашего бота
+        echo "<script>location.replace('http://bot.std-573.ist.mospolytech.ru/notification.php')</script>";//ссылка на скрипт вашего бота
     }
     else
     {
@@ -242,6 +242,6 @@ function answer()
     {
     }
     $mysqli->close();
-    echo "<script>location.replace('http://vkbot.std-320.ist.mospolytech.ru/answers.php')</script>"; //ссылка на скрипт вашего бота
+    echo "<script>location.replace('http://bot.std-573.ist.mospolytech.ru/answers.php')</script>"; //ссылка на скрипт вашего бота
 }
 ?>
