@@ -69,13 +69,11 @@ if(isset($_POST['send']))
 {
   answer();
 }
-<<<<<<< HEAD
+
 if(isset($_POST['exit'])) 
     { 
         session_destroy(); 
         header('Location: /auth.php'); 
         exit; 
     } 
-=======
->>>>>>> 6e102d7ecaf2219fc37cba625546ef47b8da99c3
 ?>
