@@ -105,19 +105,19 @@ switch ($action)
 				$errors['login'] = 'Не введён логин!';
 			elseif (!preg_match('/^([a-z0-9_-]{2,20})$/i', $_POST['login']))
 				$errors['login'] = 'Логин может содержать буквы латинского алфавита, цифры, символы _, -, а так же быть длиной от 2 до 20 символов!';
-			elseif ((getDb()->query('SELECT COUNT(*) as `cnt` FROM `admins` WHERE `login` = "' . getDb()->escape_string($_POST['login']) . '" LIMIT 1')->fetch_object()->cnt))
+			elseif ((getDb()->query('SELECT COUNT(*) as `cnt` FROM `Auth` WHERE `login` = "' . getDb()->escape_string($_POST['login']) . '" LIMIT 1')->fetch_object()->cnt))
 				$errors['login'] = 'Пользователь с таким логином уже существует!';
 
 			if (empty($_POST['password']))
 				$errors['password'] = 'Не введён пароль!';
-			elseif (0 > strlen($_POST['password']))
+			elseif (6 > strlen($_POST['password']))
 				$errors['password'] = 'Пароль должен содержать не менее 6 символов!';
 				 
 
 			if (empty($errors)) {
 				$password = sha1($_POST['password'] . $salt);
 				getDb()->query(
-					'INSERT INTO `admins` ('
+					'INSERT INTO `Auth` ('
 					. '`login`, `password`, `status`'
 					. ') VALUES ('
 					. '"' . getDb()->escape_string($_POST['login']) . '", "' . $password . '", ' . (empty($_POST['status']) ? 0 : 1)
@@ -138,7 +138,7 @@ switch ($action)
 				$errors[] = 'Не введён логин!';
 			elseif (!preg_match('/^([a-z0-9_-]{2,20})$/i', $_POST['login']))
 				$errors[] = 'Логин может содержать буквы латинского алфавита, цифры, символы _, -, а так же быть длиной от 2 до 20 символов!';
-			elseif ((getDb()->query('SELECT COUNT(*) as `cnt` FROM `admins` WHERE `login` = "' . getDb()->escape_string($_POST['login']) . '" AND `id` != ' . intval($_POST['id']) . ' LIMIT 1')->fetch_object()->cnt))
+			elseif ((getDb()->query('SELECT COUNT(*) as `cnt` FROM `Auth` WHERE `login` = "' . getDb()->escape_string($_POST['login']) . '" AND `id` != ' . intval($_POST['id']) . ' LIMIT 1')->fetch_object()->cnt))
 				$errors[] = 'Пользователь с таким логином уже существует!';
 
 			if (empty($_POST['password']) && 6 > strlen($_POST['password'], 'utf-8'))
@@ -147,7 +147,7 @@ switch ($action)
 			if (empty($errors)) {
 				$password = sha1($_POST['password'] . $salt);
 				getDb()->query(
-					'UPDATE `admins` SET '
+					'UPDATE `Auth` SET '
 					. '`login` = "' . getDb()->escape_string($_POST['login']) . '", '
 					. '`status` = ' . (empty($_POST['status']) ? 0 : 1)
 					. (!empty($_POST['password']) ? ', `password` = "' . sha1($_POST['password'] . $salt) . '" ' : ' ')
@@ -162,16 +162,16 @@ switch ($action)
 	case 'delete':
 		// Удаление
 		if (isset($_GET['delete'])) {
-			if (getDb()->query('DELETE FROM `admins` WHERE `id` = ' . intval($_GET['delete'])) && getDb()->affected_rows)
+			if (getDb()->query('DELETE FROM `Auth` WHERE `id` = ' . intval($_GET['delete'])) && getDb()->affected_rows)
 				$success = 'Пользователь успешно удалён!';
 			else
 				$errors['title'] = 'Ошибка удаления пользователя!';
 		}
 	default:
 		// Вывод формы и пользователей
-		$users_count = getDb()->query('SELECT COUNT(*) as `count` FROM `admins`')->fetch_object()->count;
+		$users_count = getDb()->query('SELECT COUNT(*) as `count` FROM `Auth`')->fetch_object()->count;
 		if (0 < $users_count) {
-			$query = getDb()->query('SELECT `id`, `login`, `status` FROM `admins` ORDER BY `id` DESC');
+			$query = getDb()->query('SELECT `id`, `login`, `status` FROM `Auth` ORDER BY `id` DESC');
 		}
 
 		viewHeader('Админка');
