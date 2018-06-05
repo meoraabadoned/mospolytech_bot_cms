@@ -1,16 +1,14 @@
 <?php
 
-define('ADMIN_PASSWORD', '1000'); // Пароль админа
+define('ADMIN_PASSWORD', '12345'); // Пароль админа
 
 session_start();
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-/**
- * Возвращает экземпляр класса для работы с БД
- *
- * @return MySQLi
+/*
+  Возвращает экземпляр класса для работы с БД
  */
 function getDb()
 {
@@ -112,8 +110,9 @@ switch ($action)
 
 			if (empty($_POST['password']))
 				$errors['password'] = 'Не введён пароль!';
-			elseif (0 > strlen($_POST['password'], 'utf-8')) 
+			elseif (0 > strlen($_POST['password']))
 				$errors['password'] = 'Пароль должен содержать не менее 6 символов!';
+				 
 
 			if (empty($errors)) {
 				$password = sha1($_POST['password'] . $salt);
@@ -142,7 +141,7 @@ switch ($action)
 			elseif ((getDb()->query('SELECT COUNT(*) as `cnt` FROM `admins` WHERE `login` = "' . getDb()->escape_string($_POST['login']) . '" AND `id` != ' . intval($_POST['id']) . ' LIMIT 1')->fetch_object()->cnt))
 				$errors[] = 'Пользователь с таким логином уже существует!';
 
-			if (!empty($_POST['password']) && 6 > strlen($_POST['password'], 'utf-8'))
+			if (empty($_POST['password']) && 6 > strlen($_POST['password'], 'utf-8'))
 				$errors[] = 'Пароль должен содержать не менее 6 символов!';
 
 			if (empty($errors)) {
