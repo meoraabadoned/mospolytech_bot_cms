@@ -18,7 +18,7 @@ function getDb()
 
 	if (is_null($mysqli))
 	{
-		$mysqli = new mysqli('std-mysql','std_331','123456789', 'std_331');
+		$mysqli = new mysqli('std-mysql','std_320','meowmeow', 'std_320');
 		if (mysqli_connect_errno())
 		{
 			printf("Connect failed: %s\n", mysqli_connect_error());
@@ -205,11 +205,11 @@ switch ($action)
 							<div class="col-sm-8">
 								<input
 									type="text"
-									name="add_password"
-									id="password"
+									name="password"
+									id="add_password"
 									class="form-control<?php if (!empty($errors['password'])) echo ' is-invalid'; ?>"
 									placeholder="Пароль"
-									value="<?php echo empty($_POST['login']) ? '' : htmlspecialchars($_POST['password'], ENT_QUOTES); ?>"
+									value="<?php echo empty($_POST['password']) ? '' : htmlspecialchars($_POST['password'], ENT_QUOTES); ?>"
 									required>
 								<?php if (!empty($errors['password'])) echo '<div class="invalid-feedback">' . $errors['password'] . '</div>'; ?>
 							</div>
