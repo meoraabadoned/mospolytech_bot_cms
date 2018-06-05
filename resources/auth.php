@@ -39,7 +39,7 @@ if(isset($_SESSION['Name'])) header("Location: index.php");
 </html>
 
 <?php
-$mysqli = new mysqli('std-mysql','std_331','123456789', 'std_331');
+$mysqli = new mysqli('std-mysql','std_559','1514077q', 'std_559');
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -54,11 +54,11 @@ ini_set('display_startup_errors', 1);
 		$l_Nickname= $_POST['login'];
 		$l_Password= sha1($_POST['password']);
 		$l_Password = $l_Password.$sol;
-		$query = "SELECT Password FROM Auth WHERE Login = '$l_Nickname'";
+		$query = "SELECT password FROM Auth WHERE login = '$l_Nickname'";
 		if ($result = $mysqli->query($query)) 
 		{
 			while ($row = $result->fetch_assoc()) {
-			$Password_L= $row["Password"];
+			$Password_L= $row["password"];
 		}
 		$result->close();
 	}
