@@ -1,6 +1,6 @@
 <?php
 
-define('ADMIN_PASSWORD', '12345'); // Пароль админа
+define('ADMIN_PASSWORD', '1000'); // Пароль админа
 
 session_start();
 ini_set('error_reporting', E_ALL);
@@ -18,7 +18,7 @@ function getDb()
 
 	if (is_null($mysqli))
 	{
-		$mysqli = new mysqli('std-mysql','std_320','meowmeow', 'std_320');
+		$mysqli = new mysqli('std-mysql','std_559','1514077q', 'std_559');
 		if (mysqli_connect_errno())
 		{
 			printf("Connect failed: %s\n", mysqli_connect_error());
@@ -112,7 +112,7 @@ switch ($action)
 
 			if (empty($_POST['password']))
 				$errors['password'] = 'Не введён пароль!';
-			elseif (6 > mb_strlen($_POST['password'], 'utf-8'))
+			elseif (0 > strlen($_POST['password'], 'utf-8')) 
 				$errors['password'] = 'Пароль должен содержать не менее 6 символов!';
 
 			if (empty($errors)) {
@@ -142,7 +142,7 @@ switch ($action)
 			elseif ((getDb()->query('SELECT COUNT(*) as `cnt` FROM `admins` WHERE `login` = "' . getDb()->escape_string($_POST['login']) . '" AND `id` != ' . intval($_POST['id']) . ' LIMIT 1')->fetch_object()->cnt))
 				$errors[] = 'Пользователь с таким логином уже существует!';
 
-			if (!empty($_POST['password']) && 6 > mb_strlen($_POST['password'], 'utf-8'))
+			if (!empty($_POST['password']) && 6 > strlen($_POST['password'], 'utf-8'))
 				$errors[] = 'Пароль должен содержать не менее 6 символов!';
 
 			if (empty($errors)) {
