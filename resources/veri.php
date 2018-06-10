@@ -25,9 +25,9 @@ require 'scripts.php'
 
     <!-- Custom styles for this template -->
      <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="que.css">
   </head>
 
-  <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,10 +35,10 @@ require 'scripts.php'
   </button>
   <a class="navbar-brand" href="#">Московский Политех</a>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+  <section class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item ">
-        <a class="nav-link" href="groups.php">Группы</span></a>
+        <a class="nav-link" href="groups.php">Группы</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="students.php">Студенты</a>
@@ -47,7 +47,10 @@ require 'scripts.php'
         <a class="nav-link" href="question.php">Вопросы</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="control.php">Панель Управления<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="admin.php">Панель Управления</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="veri.php">Верификация<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <form method="post">
@@ -55,16 +58,10 @@ require 'scripts.php'
         </form>
       </li>
     </ul>
-    
-  </div>
+    </section>
 </nav>
     </header>
-
-<?php
-if(isset($_POST['exit'])) 
-    { 
-        session_destroy(); 
-        header('Location: /auth.php'); 
-        exit; 
-    } 
-?>
+  <body>
+          <div class="col-sm-5" id = "cont"> Имя:<br>Фамилия: <br> Номер группы:<input type="hidden" name="post_id" value="29" /><br><br><button type="button" class="btn btn-default">Отклонить</button> <button type="button" class="btn btn-default">Принять</button></div>
+  </body>
+    

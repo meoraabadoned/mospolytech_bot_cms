@@ -43,8 +43,11 @@ require 'scripts.php'
                     <a class="nav-link" href="question.php">Вопросы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="control.php">Панель Управления</a>
+                    <a class="nav-link" href="admin.php">Панель Управления</a>
                 </li>
+                <li class="nav-item">
+        <a class="nav-link" href="veri.php">Верификация</a>
+                 </li>
                 <li class="nav-item">
                     <form method="post">
                     <input type="submit" class="send ex nav-link" name="exit" value="Выход">

@@ -47,7 +47,10 @@ require 'scripts.php'
         <a class="nav-link active" href="question.php">Вопросы<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="control.php">Панель Управления</a>
+        <a class="nav-link" href="admin.php">Панель Управления</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="veri.php">Верификация</a>
       </li>
       <li class="nav-item">
         <form method="post">
@@ -59,9 +62,11 @@ require 'scripts.php'
   </section>
 </nav>
     </header>
-    <body>
+    <body >
+    <div class="col-sm-5" id = "cont" align = "center">
       <?php  question() ?>
-    </body>
+    </div>
+  </body>
     </html>
 
 <?php 
