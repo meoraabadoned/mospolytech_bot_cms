@@ -14,12 +14,45 @@ function student($columnNum)
         {
             $result = $dbh->query("SELECT * FROM students WHERE group_num LIKE '%".$_GET['group']."%'")->fetchAll();
         }
+        elseif(isset($_GET['verified']))
+        {
+            $result = $dbh->query("SELECT * FROM students WHERE verified = '%".$_GET['verified']."%'")->fetchAll();
+        }
         else
         {
-            $result = $dbh->query("SELECT * FROM students")->fetchAll();
+            $result = $dbh->query("SELECT * FROM students WHERE verified = 1")->fetchAll();
         }
-        $reverseResult = array_reverse($result);
-        foreach($reverseResult as $post):
+        
+        if(isset($_GET['verified']))
+        {        
+        foreach($result as $post):
+            $sort++;
+            if($sort==$columnNum)
+            {
+                echo '<div class="searchable-container">';
+                echo '<form method="post">';
+                echo '<div class="items">';
+                echo '<div class="studentbox0">';    
+                echo '<div class="holder0">';
+                echo '<div class="student_name"><a href="https://vk.com/id'.$post["vk_id"].'">'.$post["surname"].' '.$post["name"].'</a></div>';
+                echo '<div class="description">'.$post["group_num"].'</div>';
+                echo '</div>';
+                echo '<div class="checkbox0">';
+                echo '<input type="hidden" name="student_id" value="'.$post["vk_id"].'" />';
+                echo '<input type="submit" name="reject" class="send" value="Отклонить" style="background-color: #a61f3a">';
+                echo '<input type="submit" name="accept" class="send" value="Принять" style="background-color: #1fa67a">';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo '</form>';
+                echo '</div>';
+            }
+            if($sort==3)
+                $sort=0;
+        endforeach;
+        }else
+        {
+        foreach($result as $post):
             $sort++;
             if($sort==$columnNum)
             {
@@ -40,6 +73,7 @@ function student($columnNum)
             if($sort==3)
                 $sort=0;
         endforeach; 
+        }
         $dbh = null;
         $result=null;
     } catch (PDOException $e) {
@@ -56,7 +90,7 @@ function group($columnNum)
         $dbh = new PDO("mysql:host=std-mysql;dbname=std_320;", 'std_320','meowmeow'); 
         $result = $dbh->query("SELECT * FROM groups")->fetchAll();
         $reverseResult = array_reverse($result);
-        foreach($reverseResult as $post):
+        foreach($result as $post):
         $sort++;
         if($sort==$columnNum)
         {
@@ -87,7 +121,7 @@ function group($columnNum)
 
 function sendOutForStudents()
 {
-    $author = "admin";
+    $author = $_SESSION['Name'];
         $text = $_POST['text']; //берутся данные с textarea
         $targets = $_POST['targetStudents']; //выбирается массив данных с всех checkbox'ов
         $preparedTargets = implode(",",$targets);//преобразование в массив
@@ -130,7 +164,7 @@ function sendOutForStudents()
             $type = "";
             $preparedTargets ="";
             $mysqli->close();
-            echo "<script>location.replace('http://bot.std-573.ist.mospolytech.ru/notification.php')</script>";//ссылка на скрипт вашего бота
+            echo "<script>location.replace('http://vkbot.std-320.ist.mospolytech.ru/notification.php')</script>";//ссылка на скрипт вашего бота
         }
         else
         {
@@ -141,7 +175,7 @@ function sendOutForStudents()
 
 function sendOutForGroups()
 {
-    $author = "admin";
+    $author = $_SESSION['Name'];
     $text = $_POST['text'];
     $targets = $_POST['targetGroups'];
     $preparedTargets = implode(",",$targets);
@@ -242,6 +276,94 @@ function answer()
     {
     }
     $mysqli->close();
-    echo "<script>location.replace('http://bot.std-573.ist.mospolytech.ru/answers.php')</script>"; //ссылка на скрипт вашего бота
+    echo "<script>location.replace('http://vkbot.std-320.ist.mospolytech.ru/answers.php')</script>"; //ссылка на скрипт вашего бота
+}
+
+function verification()
+{     
+    $dbHost = "std-mysql";
+    $dbUser = "std_320";
+    $dbPass = "meowmeow";
+    $dbName = "std_320";
+  
+    $id = $_POST["student_id"];
+    if (mysqli_connect_errno()) {
+        exit();
+    }
+  
+    echo '<br>';
+    $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+  
+    $query = "UPDATE students SET verified = 1 WHERE vk_id = '$id';";
+    if ($result = $mysqli->query($query)) 
+    {
+    }
+    $mysqli->close();
+
+    $author = $_SESSION['Name'];
+    $text = "Ваша личность подтверждена, поздравляем. Теперь вы можете пользоваться всеми функциями бота."; //сообщение
+    $isSent = 0;
+    $type = "students";
+        //начало добавления в бд
+    if (mysqli_connect_errno()) {
+        exit();
+    }
+
+    echo '<br>';
+    $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+
+    $query = "INSERT INTO `notifications` (`author`, `text`,`target_type`,`target`, `is_sent`) 
+        VALUES ('$author', '$text', '$type' ,'$id', '$isSent');";
+    if ($result = $mysqli->query($query)) 
+    {
+    }
+    $text= "";
+    $type = "";
+    $mysqli->close();
+    echo "<script>location.replace('http://vkbot.std-320.ist.mospolytech.ru/notification.php')</script>";//ссылка на скрипт вашего бота
+}
+
+function reject()
+{
+    $dbHost = "std-mysql";
+    $dbUser = "std_320";
+    $dbPass = "meowmeow";
+    $dbName = "std_320";
+  
+    $id = $_POST["student_id"];
+    if (mysqli_connect_errno()) {
+        exit();
+    }
+  
+    echo '<br>';
+    $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+  
+    $query = "DELETE FROM students WHERE vk_id='{$id}'";
+    if ($result = $mysqli->query($query)) 
+    {
+    }
+    $mysqli->close();
+
+    $author = $_SESSION['Name'];
+    $text = "Завяка на верификацию вашей личности отменена. Для повторной попытки верификация вам необходимо заново зарегистрироваться."; //сообщение
+    $isSent = 0;
+    $type = "students";
+        //начало добавления в бд
+    if (mysqli_connect_errno()) {
+        exit();
+    }
+
+    echo '<br>';
+    $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+
+    $query = "INSERT INTO `notifications` (`author`, `text`,`target_type`,`target`, `is_sent`) 
+        VALUES ('$author', '$text', '$type' ,'$id', '$isSent');";
+    if ($result = $mysqli->query($query)) 
+    {
+    }
+    $text= "";
+    $type = "";
+    $mysqli->close();
+    echo "<script>location.replace('http://vkbot.std-320.ist.mospolytech.ru/notification.php')</script>";//ссылка на скрипт вашего бота
 }
 ?>

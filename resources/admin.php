@@ -1,6 +1,6 @@
 <?php
 
-define('ADMIN_PASSWORD', '12345'); // Пароль админа
+define('ADMIN_PASSWORD', '123456'); // Пароль админа
 
 session_start();
 ini_set('error_reporting', E_ALL);
@@ -16,7 +16,7 @@ function getDb()
 
 	if (is_null($mysqli))
 	{
-		$mysqli = new mysqli('std-mysql','std_559','1514077q', 'std_559');
+		$mysqli = new mysqli('std-mysql','std_320','meowmeow', 'std_320');
 		if (mysqli_connect_errno())
 		{
 			printf("Connect failed: %s\n", mysqli_connect_error());

@@ -43,7 +43,7 @@ require 'scripts.php'
                     <a class="nav-link" href="question.php">Вопросы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="control.php">Панель Управления</a>
+                    <a class="nav-link" href="admin.php">Панель Управления</a>
                 </li>
                 <li class="nav-item">
                     <form method="post">
@@ -60,13 +60,28 @@ require 'scripts.php'
 
 </span>
 <body>
-
-<form method="post">
+<?php
+if(empty($_GET['verified']))
+{
+    echo'<form method="post">';
+}
+?>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md" id="textColumn">
         <textarea class="textarea" name="text" cols="30" rows="10" placeholder="текст уведомления"></textarea>
         <input type="submit" name="send" class="send" value="Отправить">  
+        <label class="switch">
+        <input type="checkbox" id="verified" onClick="javascript: 
+        if ($('#verified').is(':checked')){
+            setTimeout(() => 
+            location.replace('/students.php?verified=0'), 200);
+        } else {
+            setTimeout(() =>
+            location.replace('/students.php'), 200);
+        }">
+        <span class="slider round"></span>
+        </label>
     </div>
 
     <div class="col-sm">
@@ -75,12 +90,17 @@ require 'scripts.php'
 
     <div class="col-sm">
     <?php student(2)?>
-        </div>
+    </div>
 
     <div class="col-sm">
     <?php student(3)?>
     </div>
-</form>
+<?php
+if(empty($_GET['verified']))
+{
+    echo'</form>';
+}
+?>
 <!-- тут начинается немного магии -->
 <script>
 $(function() {
@@ -112,4 +132,19 @@ $(function() {
         header('Location: /auth.php'); 
         exit; 
     } 
+
+    if(isset($_POST['accept'])) 
+    { 
+        verification();
+    } 
+
+    if(isset($_POST['reject'])) 
+    { 
+        reject();
+    } 
+
+    if(isset($_GET['verified']))
+    {
+        echo "<script>$('#verified').prop('checked', true)</script>"; 
+    }
 ?>
