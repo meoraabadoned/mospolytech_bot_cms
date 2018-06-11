@@ -1,6 +1,3 @@
-#cont{
-margin:0 auto;
-}
 html,
 body {
   background-color: #e6ecf0;
@@ -276,8 +273,9 @@ input:checked + .slider:before {
 /* Hide the browser's default checkbox */
 .container input {
   position: absolute;
-  opacity: 0;
+  opacity: 1;
   cursor: pointer;
+  width: auto;
 }
 
 /* Create a custom checkbox */
