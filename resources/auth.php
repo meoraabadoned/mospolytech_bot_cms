@@ -34,11 +34,7 @@ if(isset($_SESSION['Name'])) header("Location: index.php");
       <button class="btn btn-dark btn-block" name="cool" type="submit">Войти</button>
 <p class="mt-5 mb-4 text-muted">&copy;
       Московский Политех </p>
-    </form>
-</body>
-</html>
-
-<?php
+      <?php
 $mysqli = new mysqli('std-mysql','std_320','meowmeow', 'std_320');
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
@@ -77,3 +73,7 @@ ini_set('display_startup_errors', 1);
 			$mysqli->close();
 	}
 ?>
+
+    </form>
+</body>
+</html>

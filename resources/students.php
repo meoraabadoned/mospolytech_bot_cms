@@ -52,7 +52,7 @@ require 'scripts.php'
                 </li>
             </ul>
             <form action="scripts.js" method="get" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" name = "word" id="search">
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" name = "word" id="search" placeholder="Поиск">
             </form>
         </div>
         </nav>
