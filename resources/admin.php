@@ -238,7 +238,7 @@ switch ($action)
 								<?php if (!empty($errors['login'])) echo '<div class="invalid-feedback">' . $errors['login'] . '</div>'; ?>
 							</div>
 						</div>
-						<div class="form-group row" style="    padding-right: 0px;    padding-left: 0px;    margin-right: 0px;    margin-left: 0px;    left: 0px;">
+						<div class="form-group row" style="    padding-right: 10px;    padding-left: 0px;    margin-right: -35px;    margin-left: -19px;    left: 0px;">
 							<label for="add_password" class="col-sm-4 col-form-label">Пароль</label>
 							<div class="col-sm-8">
 								<input
@@ -252,7 +252,7 @@ switch ($action)
 								<?php if (!empty($errors['password'])) echo '<div class="invalid-feedback">' . $errors['password'] . '</div>'; ?>
 							</div>
 						</div>
-						<div class="form-group row" style="padding-left: 74px;    padding-right: 0px;    height: 50px;    width: 204px;">
+						<div class="form-group row" style="padding-left: 1px;    padding-right: 0px;    height: 47px;    width: 356px;">
 							<label for="add_status" class="col-sm-4 col-form-label">Полномочия</label>
 							<div class="col-sm-8">
 								<select name="status" id="add_status" class="form-control" style="padding-right: 0px;    margin-right: 10px;    margin-left: 17px;    padding-left: 0px;">
