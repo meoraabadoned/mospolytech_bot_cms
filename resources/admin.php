@@ -49,7 +49,7 @@ require 'scripts.php'
         <a class="nav-link active" href="control.php">Панель Управления<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <form method="post">
+        <form method="post" >
           <input type="submit" class="send ex nav-link" name="exit" value="Выход">
         </form>
       </li>
@@ -130,8 +130,8 @@ switch ($action)
 			  <?php if (isset($error)) echo '<div class="alert alert-danger">' . $error . '</div>'; ?>
 			  <h1 class="h3 mb-3 font-weight-normal">Авторизируйтесь</h1>
 			  <label for="password" class="sr-only">Пароль:</label>
-			  <input type="password" name="password" id="password" class="form-control" placeholder="Пароль" required>
-			  <button class="btn btn-dark btn-block" name="cool" type="submit">Войти</button>
+			  <input type="password" name="password" id="password" class="form-control" placeholder="Пароль" required style="text-align: center;    padding-left: 12px;    margin-left: 550px;   margin-right: -100;    width: 243px;">
+			  <button class="btn btn-dark btn-block" name="cool" type="submit" style="width: 243px;    margin-left: 550px;    margin-top: 10px;">Войти</button>
 			  <p class="mt-5 mb-4 text-muted">&copy; Московский Политех </p>
 			</form>
 			
