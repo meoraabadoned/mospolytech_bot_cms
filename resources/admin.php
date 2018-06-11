@@ -127,15 +127,10 @@ switch ($action)
 				
 			<form method="post" class="form-signin">
 			  <img class="mb-4" src="polytech.png" alt="polytech logo" width="320" height="140">
-			  <?php if (isset($error)) echo '<div class="alert alert-danger" style="
-    padding-left: 12px;
-    margin-left: 550px;
-    margin-right: -100px;
-    width: 243px;
-">' . $error . '</div>'; ?>
+			  <?php if (isset($error)) echo '<div class="alert alert-danger">' . $error . '</div>'; ?>
 			  <h1 class="h3 mb-3 font-weight-normal"  >Авторизируйтесь</h1>
-			  <label for="password" class="mt-5 mb-4 text-muted" >Пароль:</label>
-			  <input type="password" name="password" id="password" class="mt-5 mb-4 text-muted" placeholder="Введите Пароль" required style = "width=device-width, initial-scale=1, shrink-to-fit=no">
+			  <label for="password" class="h5 mb-4 font-weight-normal" >Пароль:</label>
+			  <input type="password" name="password" id="password" class="col-2 col-form-label" placeholder="Введите Пароль" required style = "width=device-width, initial-scale=1, shrink-to-fit=no">
 			  <button class="send" name="cool" type="submit" >Войти</button>
 			  <p class="mt-5 mb-4 text-muted">&copy; Московский Политех </p>
 			</form>
