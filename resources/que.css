@@ -4,6 +4,7 @@ div {
   background: #fff;
   border-radius: 6px;
   box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.64);
+
 }
 [class*="badger"] {
   position: relative;
@@ -100,4 +101,9 @@ textarea.textarea2 {
 }
 .block {
   margin: 0 auto;
+}
+.sos {
+  width: 60%;
+  padding: 0;
+  margin:auto;
 }

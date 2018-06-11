@@ -60,7 +60,7 @@ require 'scripts.php'
 </nav>
     </header>
     <body>
-      <div id ="cont" class="col-sm-4">
+      <div class="sos">
       <?php  question() ?>
     </div>
     </body>
