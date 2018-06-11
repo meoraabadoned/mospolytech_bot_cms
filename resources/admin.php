@@ -115,7 +115,7 @@ switch ($action)
 				 
 
 			if (empty($errors)) {
-				$password = sha1($_POST['password'] . $salt);
+				$password = sha1($_POST['password']);
 				getDb()->query(
 					'INSERT INTO `Auth` ('
 					. '`login`, `password`, `status`'
@@ -145,12 +145,12 @@ switch ($action)
 				$errors[] = 'Пароль должен содержать не менее 6 символов!';
 
 			if (empty($errors)) {
-				$password = sha1($_POST['password'] . $salt);
+				$password = sha1($_POST['password']);
 				getDb()->query(
 					'UPDATE `Auth` SET '
 					. '`login` = "' . getDb()->escape_string($_POST['login']) . '", '
 					. '`status` = ' . (empty($_POST['status']) ? 0 : 1)
-					. (!empty($_POST['password']) ? ', `password` = "' . sha1($_POST['password'] . $salt) . '" ' : ' ')
+					. (!empty($_POST['password']) ? ', `password` = "' . sha1($_POST['password']) . '" ' : ' ')
 					. 'WHERE `id` = ' . intval($_POST['id'])
 				);
 				$success = 'Данные пользователя успешно изменены!';

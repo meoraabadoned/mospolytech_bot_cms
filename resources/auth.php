@@ -51,26 +51,29 @@ ini_set('display_startup_errors', 1);
 	if (isset($_POST['cool']))
 	{
 		$salt = 'HOHOHOLOLOLOBOBOBO';
-		$l_Nickname= $_POST['login'];
-		$l_Password= sha1($_POST['password'] . $salt);
-		$query = "SELECT password FROM Auth WHERE login = '$l_Nickname'";
-		if ($result = $mysqli->query($query)) 
+		$login= $_POST['login'];
+		$password= sha1($_POST['password']);
+		$query = "SELECT * FROM Auth WHERE Login = '$login' AND Password = '$password'";
+		$result = $mysqli->query($query);
+		$numrows=mysqli_num_rows($result);
+		if($numrows!=0)
 		{
-			while ($row = $result->fetch_assoc()) {
-			$Password_L= $row["password"];
+			while($row=mysqli_fetch_assoc($result))
+			{
+			$dbLogin = $row['Login'];
+			$dbPassword = $row['Password'];
+			}
 		}
-		$result->close();
-	}
-		if ($l_Password == ($Password_L))
-		{
-			session_start();
-			$_SESSION['Name']=$l_Nickname;
+		if ($login == $dbLogin && $password == $dbPassword)
+		{	
+			$_SESSION['Name']=$login;
 			header("Location: /index.php");
 		}
 		else
 		{
 			echo '<br>Неправильный пароль<br>';
-		}
-		$mysqli->close();
+      
+			}
+			$mysqli->close();
 	}
 ?>
