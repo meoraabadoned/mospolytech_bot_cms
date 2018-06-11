@@ -60,21 +60,17 @@ require 'scripts.php'
     </header>
 				</body>
 <?php
-
 define('ADMIN_PASSWORD', '123456'); // Пароль админа
-
 session_start();
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-
 /*
   Возвращает экземпляр класса для работы с БД
  */
 function getDb()
 {
 	static $mysqli;
-
 	if (is_null($mysqli))
 	{
 		$mysqli = new mysqli('std-mysql','std_320','meowmeow', 'std_320');
@@ -84,10 +80,8 @@ function getDb()
 			exit();
 		}
 	}
-
 	return $mysqli;
 }
-
 /**
  * Выводит "шапку" страницы
  *
@@ -102,14 +96,12 @@ function viewHeader($title)
 
 <?php
 }
-
 if (!isset($_SESSION['Admin_Password']) || $_SESSION['Admin_Password'] != ADMIN_PASSWORD)
 	$action = 'auth';
 elseif (isset($_GET['action']))
 	$action = trim($_GET['action']);
 else
 	$action = '';
-
 switch ($action)
 {
 	case 'auth':
@@ -158,13 +150,11 @@ switch ($action)
 				$errors['login'] = 'Логин может содержать буквы латинского алфавита, цифры, символы _, -, а так же быть длиной от 2 до 20 символов!';
 			elseif ((getDb()->query('SELECT COUNT(*) as `cnt` FROM `Auth` WHERE `login` = "' . getDb()->escape_string($_POST['login']) . '" LIMIT 1')->fetch_object()->cnt))
 				$errors['login'] = 'Пользователь с таким логином уже существует!';
-
 			if (empty($_POST['password']))
 				$errors['password'] = 'Не введён пароль!';
 			elseif (6 > strlen($_POST['password']))
 				$errors['password'] = 'Пароль должен содержать не менее 6 символов!';
 				 
-
 			if (empty($errors)) {
 				$password = sha1($_POST['password']);
 				getDb()->query(
@@ -191,10 +181,8 @@ switch ($action)
 				$errors[] = 'Логин может содержать буквы латинского алфавита, цифры, символы _, -, а так же быть длиной от 2 до 20 символов!';
 			elseif ((getDb()->query('SELECT COUNT(*) as `cnt` FROM `Auth` WHERE `login` = "' . getDb()->escape_string($_POST['login']) . '" AND `id` != ' . intval($_POST['id']) . ' LIMIT 1')->fetch_object()->cnt))
 				$errors[] = 'Пользователь с таким логином уже существует!';
-
 			if (empty($_POST['password']) && 6 > strlen($_POST['password'], 'utf-8'))
 				$errors[] = 'Пароль должен содержать не менее 6 символов!';
-
 			if (empty($errors)) {
 				$password = sha1($_POST['password']);
 				getDb()->query(
@@ -224,13 +212,12 @@ switch ($action)
 		if (0 < $users_count) {
 			$query = getDb()->query('SELECT `id`, `login`, `status` FROM `Auth` ORDER BY `id` DESC');
 		}
-
 		viewHeader('Админка');
 		?>
 		<body>
 		
-			<div class="container">
-				<div class="row justify-content-sm-center">
+			<div class="container" style="top: 100px;">
+				<div class="row justify-content-sm-center" style="width: 893px;">
 					<form action="?action=add" method="post">
 						<?php if (isset($success)): ?>
 							<div class="alert alert-success text-center"><?php echo $success; ?></div>
@@ -251,7 +238,7 @@ switch ($action)
 								<?php if (!empty($errors['login'])) echo '<div class="invalid-feedback">' . $errors['login'] . '</div>'; ?>
 							</div>
 						</div>
-						<div class="form-group row">
+						<div class="form-group row" style="    padding-right: 0px;    padding-left: 0px;    margin-right: 0px;    margin-left: 0px;    left: 0px;">
 							<label for="add_password" class="col-sm-4 col-form-label">Пароль</label>
 							<div class="col-sm-8">
 								<input
@@ -265,16 +252,16 @@ switch ($action)
 								<?php if (!empty($errors['password'])) echo '<div class="invalid-feedback">' . $errors['password'] . '</div>'; ?>
 							</div>
 						</div>
-						<div class="form-group row">
+						<div class="form-group row" style="padding-left: 74px;    padding-right: 0px;    height: 50px;    width: 204px;">
 							<label for="add_status" class="col-sm-4 col-form-label">Полномочия</label>
 							<div class="col-sm-8">
-								<select name="status" id="add_status" class="form-control">
+								<select name="status" id="add_status" class="form-control" style="padding-right: 0px;    margin-right: 10px;    margin-left: 17px;    padding-left: 0px;">
 									<option value="0"<?php if (empty($_POST['status'])) echo ' selected="selected"'; ?>>Админ</option>
 									<option value="1"<?php if (!empty($_POST['status'])) echo ' selected="selected"'; ?>>Модер</option>
 								</select>
 							</div>
 						</div>
-						<div class="form-group row justify-content-end">
+						<div class="form-group row justify-content-end" style="   padding-left: 0px;   left: -10;  padding-right: 189px;">
 							<div class="col-sm-8">
 								<input type="submit" name="add" class="btn btn-success" value="Добавить пользователя">
 							</div>
@@ -282,7 +269,8 @@ switch ($action)
 					</form>
 				</div>
 
-				<div class="row">
+				<div class="row" style="padding-top: 100px;
+"">
 					<table class="table table-bordered">
 						<thead>
 							<tr>
@@ -420,7 +408,6 @@ switch ($action)
 		<?php
 		break;
 }
-
 if(isset($_POST['exit'])) 
     { 
         session_destroy(); 
