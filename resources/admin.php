@@ -127,11 +127,16 @@ switch ($action)
 				
 			<form method="post" class="form-signin">
 			  <img class="mb-4" src="polytech.png" alt="polytech logo" width="320" height="140">
-			  <?php if (isset($error)) echo '<div class="alert alert-danger" style=" padding-left: 12px;    margin-left: 550px;   margin-right: -100px;    width: 243px;">' . $error . '</div>'; ?>
-			  <h1 class="h3 mb-3 font-weight-normal">Авторизируйтесь</h1>
-			  <label for="password" class="sr-only">Пароль:</label>
-			  <input type="password" name="password" id="password" class="form-control" placeholder="Пароль" required style="text-align: center;    padding-left: 12px;    margin-left: 550px;   margin-right: -100;    width: 243px;">
-			  <button class="btn btn-dark btn-block" name="cool" type="submit" style="width: 243px;    margin-left: 550px;    margin-top: 10px;">Войти</button>
+			  <?php if (isset($error)) echo '<div class="alert alert-danger" style="
+    padding-left: 12px;
+    margin-left: 550px;
+    margin-right: -100px;
+    width: 243px;
+">' . $error . '</div>'; ?>
+			  <h1 class="h3 mb-3 font-weight-normal"  >Авторизируйтесь</h1>
+			  <label for="password" class="mt-5 mb-4 text-muted" >Пароль:</label>
+			  <input type="password" name="password" id="password" class="mt-5 mb-4 text-muted" placeholder="Введите Пароль" required style = "width=device-width, initial-scale=1, shrink-to-fit=no">
+			  <button class="send" name="cool" type="submit" >Войти</button>
 			  <p class="mt-5 mb-4 text-muted">&copy; Московский Политех </p>
 			</form>
 			
