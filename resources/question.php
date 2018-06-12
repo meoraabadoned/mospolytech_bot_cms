@@ -60,9 +60,9 @@ require 'scripts.php'
 </nav>
     </header>
     <body>
-      <div class="sos">
+     
       <?php  question() ?>
-    </div>
+    
     </body>
     </html>
 
