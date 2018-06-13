@@ -214,7 +214,7 @@ switch ($action)
 		}
 		viewHeader('Админка');
 		?>
-		<body>
+		<body class="text-center">
 		
 			<div class="container" style="top: 100px;">
 				<div class="row justify-content-sm-center" style="width: 893px;">
