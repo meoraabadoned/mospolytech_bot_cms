@@ -236,7 +236,7 @@ function question ()
         $reverseResult = array_reverse($result);
         foreach($reverseResult as $post):
         {
-            echo '<div class="badger-right badger-info" data-badger1 = '.$post["vk_id"].' data-badger="'.$post["date"].'"> '.$post["question"].' ';
+            echo '<div class="col-md-5 badger-right badger-info" data-badger1 = '.$post["vk_id"].' data-badger="'.$post["date"].'"> '.$post["question"].' ';
             echo '<form method="post"';
             echo '<div>';    
             echo '<textarea class="textarea2" name="text_answer" placeholder="текст уведомления"></textarea>';
